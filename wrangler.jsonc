@@ -5,5 +5,15 @@
     "directory": "./dist",
     "not_found_handling": "404-page"
   },
-  "workers_dev": true
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "luyongx.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.luyongx.com",
+      "custom_domain": true
+    }
+  ]
 }
