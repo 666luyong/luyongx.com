@@ -20,7 +20,7 @@ npm run deploy
 
 `wrangler.jsonc` 中的 assets 指向 `dist`。域名须先在 Cloudflare 中激活。`wrangler.jsonc` 已声明 `luyongx.com` 与 `www.luyongx.com` 自定义域名，首次发布后需验证两者的 HTTPS。
 
-如使用 Cloudflare Git 构建，构建命令 `npm run build`，部署命令 `npx wrangler deploy`。
+Cloudflare Git 自动构建已连接 `666luyong/luyongx.com`，生产分支为 `main`，根目录为 `/`，构建命令 `npm run build`，部署命令 `npx wrangler deploy`。非生产分支的预览构建已关闭。
 
 ## 内容边界
 
@@ -30,4 +30,4 @@ npm run deploy
 
 2026-10-20：通过 Cloudflare 控制台上传 dist 构建产物，创建 Worker `luyongx-com`。临时地址为 https://luyongx-com.badboybenly.workers.dev/ 。已在控制台绑定根域名和 www；名称服务器已切换至 eleanor.ns.cloudflare.com 与 koa.ns.cloudflare.com。正式域名激活及 HTTPS 需单独验证。
 
-当前尚未连接 Git 自动部署，推送 GitHub 本身不会发布新版本；后续请使用上方 deploy 命令或在 Cloudflare 控制台上传新构建。
+日常更新：修改源文件并本机预览后，将提交推送到 GitHub 的 `main` 分支，Cloudflare 将自动安装依赖、构建并部署。请在 Worker 的部署记录中确认本次构建成功；构建失败时，检查日志并修复后重新推送。上方 deploy 命令可用于手动发布。
