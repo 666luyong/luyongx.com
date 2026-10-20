@@ -1,0 +1,31 @@
+{
+  "name": "luyongx.com",
+  "version": "1.0.0",
+  "description": "AI 产品实践者 / 创业探索者的个人网站",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/666luyong/luyongx.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/666luyong/luyongx.com/issues"
+  },
+  "homepage": "https://github.com/666luyong/luyongx.com#readme",
+  "dependencies": {
+    "astro": "^7.4.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.2"
+  },
+  "private": true
+}
