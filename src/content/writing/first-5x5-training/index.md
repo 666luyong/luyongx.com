@@ -15,6 +15,7 @@ hero:
   alt: "雾夜中布满点状灯光的弧形建筑"
   credit:
     text: "Photo by Ilya Babakov on Unsplash"
+    url: "https://unsplash.com/photos/evolution-tower-in-moscow-at-night-yTaBTwN-CJM"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/buyH9YQs76Prs6kWbAAFTg"
