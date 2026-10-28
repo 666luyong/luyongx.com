@@ -11,6 +11,14 @@ draft: true
 #   src: "./images/cover.jpg"
 #   alt: "描述封面图片的内容"
 #   position: "center"
+# 可选详情大图：与列表封面独立；省略 hero 时直接显示正文。
+# hero:
+#   src: "./images/hero.jpg"
+#   alt: "描述详情大图的内容"
+#   position: "center"
+#   credit:
+#     text: "图片由作者提供"
+#     url: "https://example.com/photo"
 ---
 
 从这里开始写正文。

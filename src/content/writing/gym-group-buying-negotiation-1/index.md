@@ -10,12 +10,15 @@ cover:
   src: "./cover.png"
   alt: "深色流动纹理与红白色飞溅的抽象画"
   position: "center"
+hero:
+  src: "./cover.png"
+  alt: "深色流动纹理与红白色飞溅的抽象画"
+  credit:
+    text: "图片由作者提供"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/ggT_cRlidpFSQciLs-dyHA"
 ---
-
-![深色流动纹理与红白色飞溅的抽象画](./cover.png)
 
 年前和小区邻居一起组织了一起健身房团购，谈判结果喜人。
 

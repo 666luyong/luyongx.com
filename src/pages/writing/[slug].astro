@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { getPosts, formatDate, postUrl, readingMinutes, type Post } from '../../lib/writing';
 
@@ -14,25 +15,40 @@ interface Props { post: Post; newer?: Post; older?: Post; }
 const { post, newer, older } = Astro.props;
 const { Content } = await render(post);
 ---
-<Base title={`${post.data.title} · Lu Yong`} description={post.data.description} article publishedAt={post.data.date} updatedAt={post.data.updated}>
+<Base title={`${post.data.title} · Lu Yong`} description={post.data.description} article publishedAt={post.data.date} updatedAt={post.data.updated} mainClass="article-main">
   <div class="reading-column">
     <a class="back" href="/writing/">← 全部文章</a>
-    <article>
-      <header class="article-heading">
-        <div class="post-meta"><span>{post.data.tags.join(' / ')}</span><span>约 {readingMinutes(post)} 分钟</span></div>
-        <h1>{post.data.title}</h1>
-        <div class="post-meta">
-          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-          <span>{post.data.author}</span>
-          {post.data.updated && <span>更新于 <time datetime={post.data.updated.toISOString()}>{formatDate(post.data.updated)}</time></span>}
-        </div>
-        {post.data.source && <p class="source-note">最初发表于 {post.data.source.name} · <a href={post.data.source.url}>查看原文 ↗</a></p>}
-      </header>
-      <div class="prose article-body"><Content /></div>
-    </article>
-    <nav class="article-navigation" aria-label="相邻文章">
-      <div>{newer && <a href={postUrl(newer)}><span>← 较新的文章</span>{newer.data.title}</a>}</div>
-      <div>{older && <a href={postUrl(older)}><span>较早的文章 →</span>{older.data.title}</a>}</div>
-    </nav>
   </div>
+  <article>
+    <header class:list={['article-heading', 'reading-column', { 'article-heading--hero': post.data.hero }]}>
+      <div class="post-meta"><span>{post.data.tags.join(' / ')}</span><span>约 {readingMinutes(post)} 分钟</span></div>
+      <h1>{post.data.title}</h1>
+      <div class="post-meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span>{post.data.author}</span>
+        {post.data.updated && <span>更新于 <time datetime={post.data.updated.toISOString()}>{formatDate(post.data.updated)}</time></span>}
+      </div>
+      {post.data.source && <p class="source-note">最初发表于 {post.data.source.name} · <a href={post.data.source.url}>查看原文 ↗</a></p>}
+    </header>
+    {post.data.hero && (
+      <figure class="article-hero">
+        <Image src={post.data.hero.src} alt={post.data.hero.alt}
+          width={1200} height={800} widths={[480, 768, 1200, 1800]}
+          sizes="(max-width: 1240px) calc(100vw - 40px), 1200px"
+          fit="cover" position={post.data.hero.position} priority />
+        {post.data.hero.credit && (
+          <figcaption class="reading-column">
+            {post.data.hero.credit.url
+              ? <a href={post.data.hero.credit.url}>{post.data.hero.credit.text}</a>
+              : post.data.hero.credit.text}
+          </figcaption>
+        )}
+      </figure>
+    )}
+    <div class="prose article-body reading-column"><Content /></div>
+  </article>
+  <nav class="article-navigation reading-column" aria-label="相邻文章">
+    <div>{newer && <a href={postUrl(newer)}><span>← 较新的文章</span>{newer.data.title}</a>}</div>
+    <div>{older && <a href={postUrl(older)}><span>较早的文章 →</span>{older.data.title}</a>}</div>
+  </nav>
 </Base>

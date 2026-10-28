@@ -6,11 +6,12 @@ interface Props {
   article?: boolean;
   publishedAt?: Date;
   updatedAt?: Date;
+  mainClass?: string;
 }
 const {
   title = 'Lu Yong · 产品、实践与生活',
   description = '我是 Lu Yong，AI 产品实践者 / 创业探索者。这里记录 ddnsto、Agentflow 等项目经历，也分享滑雪、健身和日常生活中的思考。',
-  article = false, publishedAt, updatedAt,
+  article = false, publishedAt, updatedAt, mainClass,
 } = Astro.props;
 const path = Astro.url.pathname;
 const canonical = new URL(path, Astro.site);
@@ -44,7 +45,7 @@ const navigation = [['/', '首页'], ['/projects/', 'Projects'], ['/writing/', '
         ))}
       </nav>
     </header>
-    <main id="main"><slot /></main>
+    <main id="main" class={mainClass}><slot /></main>
     <footer class="site-footer">
       <div><a href="/">Lu Yong</a><span>产品、实践与生活。</span></div>
       <div><a href="/rss.xml">RSS 订阅</a><a href="https://github.com/666luyong/luyongx.com">本站源码 ↗</a></div>

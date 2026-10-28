@@ -17,6 +17,15 @@ const writing = defineCollection({
       alt: z.string().min(1),
       position: z.enum(['center', 'left', 'right', 'top', 'bottom']).default('center'),
     }).optional(),
+    hero: z.object({
+      src: image(),
+      alt: z.string().min(1),
+      position: z.enum(['center', 'left', 'right', 'top', 'bottom']).default('center'),
+      credit: z.object({
+        text: z.string().trim().min(1),
+        url: z.string().url().regex(/^https?:\/\//, '图片来源链接需要使用 http 或 https').optional(),
+      }).optional(),
+    }).optional(),
     source: z.object({ name: z.string(), url: z.string().url() }).optional(),
   }).refine((post) => !post.updated || post.updated >= post.date, {
     message: 'updated 不能早于原始发表时间 date',
