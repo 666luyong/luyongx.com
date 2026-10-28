@@ -11,6 +11,24 @@ npm run build
 npm run preview
 ```
 
+### it-runner 局域网开发预览
+
+需要 Node.js ≥ 22.22.0。使用 nvm 时，先执行 `nvm install`、`nvm use`（版本由 `.nvmrc` 指定），任务也会自动加载 nvm。
+首次使用先运行 `npm ci`，然后在 Agentflow 的 it-runner 中刷新本项目任务，启动 `dev-preview`。
+访问 http://192.168.9.33:6166/ 查看页面；修改 `.astro` 文件后会自动更新，无需重新构建。
+任务监听 `0.0.0.0:6166`，电脑或手机需要能访问该主机的局域网地址。
+
+在 it-runner 中可以启动、重启或停止任务。任务启动后，也可以在项目根目录用状态文件控制：
+
+```sh
+# 重启
+echo "RESTART $(date +%s)" > .it-runner/states/dev-preview.STATE
+# 停止
+echo "STOP $(date +%s)" > .it-runner/states/dev-preview.STATE
+```
+
+运行日志位于 `.it-runner/logs/`，日志、缓存和状态文件不纳入 Git。
+
 ## Cloudflare Workers Static Assets
 
 ```sh

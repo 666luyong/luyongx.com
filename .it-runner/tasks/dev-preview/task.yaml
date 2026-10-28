@@ -1,0 +1,28 @@
+version: "1"
+name: "dev-preview"
+description: "启动网站开发预览，支持热更新：http://192.168.9.33:6166/"
+tags: ["dev", "frontend", "preview"]
+
+workspace:
+  workdir: "${PROJECT_ROOT}"
+
+processes:
+  - name: "astro-dev"
+    # Keep Astro in the foreground so it-runner owns the server lifecycle.
+    cmd: >-
+      cd "${PROJECT_ROOT}" &&
+      if [ -s "$HOME/.nvm/nvm.sh" ]; then
+        . "$HOME/.nvm/nvm.sh" && nvm use --silent || exit 1;
+      fi &&
+      exec node ./node_modules/astro/bin/astro.mjs dev --ignore-lock --host 0.0.0.0 --port 6166
+    ports: [6166]
+    startupTimeoutSeconds: 30
+
+health:
+  http:
+    - name: "网站首页"
+      url: "http://127.0.0.1:6166/"
+      timeoutSeconds: 3
+
+watch:
+  stateFile: "${PROJECT_ROOT}/.it-runner/states/dev-preview.STATE"

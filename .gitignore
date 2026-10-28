@@ -4,3 +4,7 @@ dist/
 .wrangler/
 .env*
 .DS_Store
+.it-runner/logs/
+.it-runner/cache/
+.it-runner/states/
+.it-runner/**/envs/*-local.env
