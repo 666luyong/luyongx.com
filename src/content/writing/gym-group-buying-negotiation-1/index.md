@@ -7,13 +7,15 @@ author: "3B"
 tags: ["生活", "实践"]
 draft: false
 cover:
-  src: "./cover.jpg"
-  alt: "原文封面：月夜下的城市与人群（AI 图片）"
-  position: "right"
+  src: "./cover.png"
+  alt: "深色流动纹理与红白色飞溅的抽象画"
+  position: "center"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/ggT_cRlidpFSQciLs-dyHA"
 ---
+
+![深色流动纹理与红白色飞溅的抽象画](./cover.png)
 
 年前和小区邻居一起组织了一起健身房团购，谈判结果喜人。
 
