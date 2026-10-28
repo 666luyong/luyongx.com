@@ -7,9 +7,14 @@ author: "3B"
 tags: ["健身", "生活"]
 draft: false
 cover:
-  src: "./cover.jpg"
-  alt: "原文封面：蓝色水面上的波纹"
+  src: "./cover.png"
+  alt: "雾夜中布满点状灯光的弧形建筑"
   position: "center"
+hero:
+  src: "./cover.png"
+  alt: "雾夜中布满点状灯光的弧形建筑"
+  credit:
+    text: "Photo by Ilya Babakov on Unsplash"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/buyH9YQs76Prs6kWbAAFTg"
