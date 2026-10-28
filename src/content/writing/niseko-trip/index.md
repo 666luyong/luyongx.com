@@ -6,6 +6,10 @@ date: "2019-02-07T00:07:57+08:00"
 author: "3B"
 tags: ["滑雪", "旅行"]
 draft: false
+cover:
+  src: "./cover.jpg"
+  alt: "原文封面：风雪中的二世古缆车"
+  position: "center"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/66XWJ1-hR8JhDXwmpE6SEw"

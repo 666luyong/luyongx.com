@@ -6,6 +6,10 @@ date: "2020-01-27T22:45:54+08:00"
 author: "3B"
 tags: ["健身", "生活"]
 draft: false
+cover:
+  src: "./cover.jpg"
+  alt: "原文封面：蓝色水面上的波纹"
+  position: "center"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/buyH9YQs76Prs6kWbAAFTg"

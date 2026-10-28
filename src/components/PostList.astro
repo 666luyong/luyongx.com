@@ -1,27 +1,35 @@
 ---
-import { formatDate, postUrl, postYear, readingMinutes, type Post } from '../lib/writing';
-interface Props { posts: Post[]; }
-const { posts } = Astro.props;
-const years = [...new Set(posts.map(postYear))];
+import { Image } from 'astro:assets';
+import { formatDate, postUrl, readingMinutes, type Post } from '../lib/writing';
+interface Props { posts: Post[]; headingLevel?: 'h2' | 'h3'; }
+const { posts, headingLevel: Heading = 'h3' } = Astro.props;
 ---
 <div class="post-list">
-  {years.map((year) => (
-    <section class="post-year" aria-label={`${year} 年文章`}>
-      <h3 class="year-label">{year}</h3>
-      <div class="year-posts">
-        {posts.filter((post) => postYear(post) === year).map((post) => (
-          <article class="post-summary">
-            <div class="post-meta">
-              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-              <span>约 {readingMinutes(post)} 分钟</span>
-              <span>{post.data.tags.join(' / ')}</span>
-            </div>
-            <h3><a href={postUrl(post)}>{post.data.title}<span class="link-arrow" aria-hidden="true">↗</span></a></h3>
-            <p>{post.data.description}</p>
-          </article>
-        ))}
+  {posts.map((post) => (
+    <article class="post-summary" aria-labelledby={`preview-${post.data.slug}`}>
+      <Heading class="post-title" id={`preview-${post.data.slug}`}><a href={postUrl(post)}>{post.data.title}</a></Heading>
+      <div class="post-meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>约 {readingMinutes(post)} 分钟</span>
       </div>
-    </section>
+      {post.data.tags.length > 0 && (
+        <ul class="post-tags" aria-label="文章分类">
+          {post.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      )}
+      {post.data.cover && (
+        <a class="post-cover" href={postUrl(post)} aria-label={`阅读：${post.data.title}`}>
+          <Image src={post.data.cover.src} alt={post.data.cover.alt}
+            width={720} height={480} widths={[360, 720, 1080]}
+            sizes="(max-width: 700px) calc(100vw - 40px), 720px"
+            fit="cover" position={post.data.cover.position}
+            loading="lazy" decoding="async" />
+        </a>
+      )}
+      <p class="post-excerpt">{post.data.description}</p>
+      <a class="post-read-more" href={postUrl(post)} aria-label={`阅读全文：${post.data.title}`}>阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
   ))}
   {posts.length === 0 && <p class="muted">新的文章正在整理中。</p>}
 </div>

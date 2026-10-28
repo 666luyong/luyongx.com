@@ -5,11 +5,12 @@ import { getPosts } from '../../lib/writing';
 const posts = await getPosts();
 ---
 <Base title="Writing · Lu Yong" description="Lu Yong 的文章与生活记录，关于实践、滑雪、健身，以及日常生活中的思考。">
-  <section class="page-heading">
-    <h1>写作与生活</h1>
-    <p>把经历写下来，也给想法留一点生长的空间。</p>
-    <a class="text-link" href="/rss.xml">通过 RSS 订阅 ↗</a>
-  </section>
-  <h2 class="sr-only">按年份归档的文章</h2>
-  <PostList posts={posts} />
+  <div class="reading-column">
+    <section class="page-heading">
+      <h1>写作与生活</h1>
+      <p>把经历写下来，也给想法留一点生长的空间。</p>
+      <a class="text-link" href="/rss.xml">通过 RSS 订阅 ↗</a>
+    </section>
+    <PostList posts={posts} headingLevel="h2" />
+  </div>
 </Base>

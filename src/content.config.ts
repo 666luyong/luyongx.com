@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 const writing = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/writing' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string().min(1),
     description: z.string().min(1),
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
@@ -12,6 +12,11 @@ const writing = defineCollection({
     author: z.string().default('Lu Yong'),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(true),
+    cover: z.object({
+      src: image(),
+      alt: z.string().min(1),
+      position: z.enum(['center', 'left', 'right', 'top', 'bottom']).default('center'),
+    }).optional(),
     source: z.object({ name: z.string(), url: z.string().url() }).optional(),
   }).refine((post) => !post.updated || post.updated >= post.date, {
     message: 'updated 不能早于原始发表时间 date',

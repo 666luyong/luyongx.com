@@ -6,6 +6,10 @@ date: "2025-02-04T22:11:41+08:00"
 author: "3B"
 tags: ["生活", "实践"]
 draft: false
+cover:
+  src: "./cover.jpg"
+  alt: "原文封面：月夜下的城市与人群（AI 图片）"
+  position: "right"
 source:
   name: "微信公众号「日常BBB」"
   url: "https://mp.weixin.qq.com/s/ggT_cRlidpFSQciLs-dyHA"

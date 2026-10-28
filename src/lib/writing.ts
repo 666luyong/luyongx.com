@@ -16,10 +16,6 @@ export function formatDate(date: Date) {
   }).format(date).replaceAll('/', '.');
 }
 
-export function postYear(post: Post) {
-  return new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'Asia/Shanghai' }).format(post.data.date);
-}
-
 export function readingMinutes(post: Post) {
   // Exclude image URLs, then count Chinese characters and other words separately.
   const text = (post.body ?? '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
