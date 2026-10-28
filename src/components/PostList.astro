@@ -1,0 +1,27 @@
+---
+import { formatDate, postUrl, postYear, readingMinutes, type Post } from '../lib/writing';
+interface Props { posts: Post[]; }
+const { posts } = Astro.props;
+const years = [...new Set(posts.map(postYear))];
+---
+<div class="post-list">
+  {years.map((year) => (
+    <section class="post-year" aria-label={`${year} 年文章`}>
+      <h3 class="year-label">{year}</h3>
+      <div class="year-posts">
+        {posts.filter((post) => postYear(post) === year).map((post) => (
+          <article class="post-summary">
+            <div class="post-meta">
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <span>约 {readingMinutes(post)} 分钟</span>
+              <span>{post.data.tags.join(' / ')}</span>
+            </div>
+            <h3><a href={postUrl(post)}>{post.data.title}<span class="link-arrow" aria-hidden="true">↗</span></a></h3>
+            <p>{post.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+  {posts.length === 0 && <p class="muted">新的文章正在整理中。</p>}
+</div>
