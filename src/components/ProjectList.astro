@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { projects } from '../data/projects';
+
+interface Props { headingLevel?: 'h2' | 'h3'; }
+const { headingLevel: Heading = 'h3' } = Astro.props;
+---
+<div class="project-list">
+  {projects.map((project) => (
+    <article>
+      <a class="project-card" href={project.href} target="_blank" rel="noopener noreferrer">
+        <div class="project-card-heading">
+          <Heading>{project.name}<span aria-hidden="true">↗</span></Heading>
+          <p>{project.role}</p>
+        </div>
+        <Image src={project.image} alt={project.imageAlt}
+          width={1440} height={754} widths={[360, 720, 1440]}
+          sizes="(max-width: 700px) calc(100vw - 74px), 670px"
+          loading="lazy" decoding="async" />
+        <span class="project-domain">{new URL(project.href).hostname}</span>
+        <span class="sr-only">（在新标签页打开官网）</span>
+      </a>
+    </article>
+  ))}
+</div>
+
+<style>
+  .project-list { display: grid; gap: 28px; max-width: 720px; margin: 28px auto 0; }
+  .project-card { display: block; padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: #fafaf7; }
+  .project-card:hover, .project-card:focus-visible { border-color: var(--accent); }
+  .project-card-heading h2, .project-card-heading h3 { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 0; color: var(--ink); font-size: 25px; font-weight: 600; letter-spacing: -.025em; }
+  .project-card-heading span { color: var(--accent); font-size: 20px; font-weight: 400; }
+  .project-card:hover h2, .project-card:hover h3 { color: var(--accent); }
+  .project-card-heading p { margin: 6px 0 20px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .project-card img { display: block; width: 100%; height: auto; aspect-ratio: 1440 / 754; border-radius: 4px; outline: 1px solid rgb(0 0 0 / .08); outline-offset: -1px; }
+  .project-domain { display: block; margin-top: 14px; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+  @media (max-width: 700px) {
+    .project-list { gap: 20px; }
+    .project-card { padding: 16px; }
+    .project-card-heading h2, .project-card-heading h3 { font-size: 23px; }
+  }
+</style>

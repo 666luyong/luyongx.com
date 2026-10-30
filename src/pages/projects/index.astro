@@ -1,18 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { projects } from '../../data/projects';
+import ProjectList from '../../components/ProjectList.astro';
 ---
-<Base title="Projects · Lu Yong" description="Lu Yong 负责过的 ddnsto、Agentflow 等项目，以及持续关注的探索方向。">
-  <section class="page-heading"><h1>项目与实践</h1><p>我负责过的项目，以及过程中留下的问题与思考。具体的职责、过程和图文会陆续整理。</p></section>
-  <div class="project-pair">
-    {projects.map((project) => (
-      <article class="project-preview">
-        <span class="project-status">图文整理中</span>
-        <h2><a href={project.href}>{project.name}<span class="link-arrow" aria-hidden="true">↗</span></a></h2>
-        <p>{project.description}</p>
-      </article>
-    ))}
-  </div>
+<Base title="Projects · Lu Yong" description="Lu Yong 参与过的 Agentflow、DDNSTO、易有云项目。">
+  <section class="page-heading"><h1>参与过的项目</h1></section>
+  <ProjectList headingLevel="h2" />
   <section class="explorations">
     <h2>也在关注</h2>
     <p>一些仍在探索中的方向。</p>
