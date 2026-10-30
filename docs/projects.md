@@ -1,7 +1,7 @@
 # 项目预览维护
 
 首页和 `/projects/` 共用 `src/components/ProjectList.astro`。
-采用 `docs/demo/projects-layout.html` 中的方案 B：桌面端三列小卡片，700px 及以下改为左侧文字、右侧缩略图的单列紧凑卡片。
+桌面端采用三列小卡片，700px 及以下改为左侧文字、右侧缩略图的单列紧凑卡片。
 在 `src/data/projects.ts` 中维护项目名称、官网链接、职责短语和预览图；职责保持简短，例如“产品设计、研发”。
 
 预览图保存在 `src/assets/projects/`，由 Astro 在构建时生成响应式图片，页面不依赖外站图片请求。
